@@ -11,7 +11,7 @@ def call(Map args=[:], Closure body={}) {
 		checkout([$class: 'GitSCM',
                           branches: [[name: "${args.BRANCH_NAME}"]],
                           extensions: [[$class: 'WipeWorkspace']],
-                          userRemoteConfigs: [[url: "${args.BRANCH_NAME}"]],
+                          userRemoteConfigs: [[url: "${args.GITHUB_CLONE_URL}"]],
 			  credentialsId: [['Github']]
                           ])
             }
