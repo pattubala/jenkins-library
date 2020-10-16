@@ -10,7 +10,13 @@ def call(Map args=[:], Closure body={}) {
             dir("${args.PROJECT_WORKSPACE_PATH}"){
                 git (url: "${args.GITHUB_CLONE_URL}",
                     branch: "${args.BRANCH_NAME}",
-                    credentialsId: 'Github')
+                    )
+		checkout([$class: 'GitSCM',
+                          branches: [[name: "${args.BRANCH_NAME}"]],
+                          extensions: [[$class: 'WipeWorkspace']],
+                          userRemoteConfigs: [[url: "${args.BRANCH_NAME}"]],
+			  credentialsId: [['Github']]
+                          ])
             }
         }
         stage("SONARQUBE STATIC CODE ANALYSIS") {
