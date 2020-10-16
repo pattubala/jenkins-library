@@ -8,12 +8,9 @@ def call(Map args=[:], Closure body={}) {
         }
 	    stage ('SCM Checkout') {
             dir("${args.PROJECT_WORKSPACE_PATH}"){
-		checkout([$class: 'GitSCM',
-                          branches: [[name: "${args.BRANCH_NAME}"]],
-                          extensions: [[$class: 'WipeWorkspace']],
-                          userRemoteConfigs: [[url: "${args.GITHUB_CLONE_URL}"]],
-			  credentialsId: [['Github']]
-                          ])
+                git (url: "${args.GITHUB_CLONE_URL}",
+                    branch: "${args.BRANCH_NAME}",
+                    credentialsId: 'Github')
             }
         }
         stage("SONARQUBE STATIC CODE ANALYSIS") {
