@@ -8,9 +8,6 @@ def call(Map args=[:], Closure body={}) {
         }
 	    stage ('SCM Checkout') {
             dir("${args.PROJECT_WORKSPACE_PATH}"){
-                git (url: "${args.GITHUB_CLONE_URL}",
-                    branch: "${args.BRANCH_NAME}",
-                    )
 		checkout([$class: 'GitSCM',
                           branches: [[name: "${args.BRANCH_NAME}"]],
                           extensions: [[$class: 'WipeWorkspace']],
