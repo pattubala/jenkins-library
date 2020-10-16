@@ -2,10 +2,8 @@
 def call(Map args=[:], Closure body={}) {
     node {
         stage('Cleanup') {
-            steps {
                 dir("${args.PROJECT_WORKSPACE_PATH}"){
                     deleteDir()
-                }
             }
         }
 	    stage ('SCM Checkout') {
