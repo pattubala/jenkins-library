@@ -1,0 +1,12 @@
+#!/usr/bin/env groovy
+def call(Map args=[:], Closure body={}) {
+    node {
+        stage('Cleanup') {
+                dir("${args.PROJECT_WORKSPACE_PATH}"){
+                    deleteDir()
+            }
+        }
+		}
+        body()
+    }
+}
