@@ -11,7 +11,6 @@ def call(Map args=[:], Closure body={}) {
                 }
             }
         }
-		}
         body()
     }
 }
