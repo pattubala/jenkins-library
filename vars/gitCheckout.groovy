@@ -8,7 +8,6 @@ def call(Map args=[:], Closure body={}) {
                     credentialsId: 'Github')
             }
         }
-		}
         body()
     }
 }
